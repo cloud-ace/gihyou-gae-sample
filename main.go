@@ -40,15 +40,16 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	_, err := fmt.Fprint(w, "Hello, World!")
+	version := os.Getenv("VERSION")
+	_, err := fmt.Fprintf(w, "Hello, World! %v", version)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 }
 
 func putUserHandler(w http.ResponseWriter, r *http.Request) {
-	projectID := os.Getenv("PROJECT_ID")
 	ctx := context.Background()
+	projectID := os.Getenv("PROJECT_ID")
 	client, err := firestore.NewClient(ctx, projectID)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
