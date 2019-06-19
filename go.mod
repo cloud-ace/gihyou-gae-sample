@@ -1,4 +1,4 @@
-module github.com/YukiTominaga/firestore
+module github.com/cloud-ace/gihoyu-gae-sample
 
 require (
 	cloud.google.com/go v0.40.0
